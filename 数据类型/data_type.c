@@ -63,6 +63,7 @@ int main() {
   } else {
     printf("%s\n", hex);
   }
+  free(hex);
   return 0;
 }
 
