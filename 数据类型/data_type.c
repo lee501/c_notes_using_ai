@@ -147,3 +147,32 @@ printf()的进制相关占位符如下。
   char c = (char)i;
   printf("%d\n", c); //3
 */
+
+/*可移植类型*/
+/*
+  stdint.h
+  #include <stdint.h>
+  typedef signed char int8_t;
+  typedef signed short int16_t;
+  typedef signed int int32_t;
+  typedef signed long int int64_t;
+  typedef unsigned char uint8_t;
+  typedef unsigned short uint16_t;
+  typedef unsigned int uint32_t;
+  typedef unsigned long int uint64_t;
+
+  #include <stdio.h>
+  #include <stdint.h>
+
+  int main(void) {
+    int32_t x32 = 45933945; 确保int32_t的大小为4个字节
+    printf("x32 = %d\n", x32);
+    return 0;
+  }
+
+  intptr_t：可以存储指针（内存地址）的有符号整数类型。
+  uintptr_t：可以存储指针的无符号整数类型。
+
+  intmax_t：可以存储任何有效的有符号整数的类型。
+  uintmax_t：可以存放任何有效的无符号整数的类型
+*/
