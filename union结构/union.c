@@ -57,3 +57,16 @@
   printf("%f\n", x.b);           // 3.141592
   printf("%f\n", *foo_float_p);  // 3.141592
 */
+
+/*union长度计算*/
+/*
+  基本规则：
+  union的大小等于其最大成员的大小
+
+  union Example {
+    char c;      // 1字节
+    int i;       // 4字节
+    double d;    // 8字节
+  };
+// 这个union的大小是8字节（因为double是最大的成员）
+*/

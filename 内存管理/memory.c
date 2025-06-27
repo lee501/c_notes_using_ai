@@ -240,6 +240,41 @@ void* my_memcpy(void* dest, const void* src, size_t n) {
   printf("%d\n", memcmp(x, y, 10)); //0
 */
 
+/*内存对齐*/
+/*
+  内存对齐的规则是：
+    1. 每个成员的偏移量必须是其类型大小的整数倍。
+    2. 结构体的总大小是其最大成员大小的整数倍。
+    3. 每个成员的起始地址必须是sizeof(T)的整数倍。  
+
+  struct S {
+    int a; //4字节
+    union { //5字节
+        char b[5];
+        int c;
+    } u;
+    double d; //8字节
+  };
+
+  int main() {
+      printf("Size of struct S: %zu\n", sizeof(struct S));
+      printf("Offset of a: %zu\n", offsetof(struct S, a));
+      printf("Offset of u: %zu\n", offsetof(struct S, u));
+      printf("Offset of d: %zu\n", offsetof(struct S, d));
+      return 0;
+  }
+  Size of struct S: 24
+  Offset of a: 0
+  Offset of u: 8
+  Offset of d: 16
+
+  u的偏移量是8，而不是4，是因为：
+
+    后面的double d需要8字节对齐
+    如果u从4开始，d会从12开始，这不满足8字节对齐
+    所以编译器在a后添加4字节填充，使u从8开始
+    这样d从16开始，满足8字节对齐要求
+*/
 
 
 
